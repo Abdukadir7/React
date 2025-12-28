@@ -3,7 +3,7 @@ import React from "react";
 const Schedule = () => {
   return (
     <div className="p-4">
-      <h3 className="text-3xl font-bold text-gray-700 mb-4">Schedule</h3>
+      <h3 className="text-3xl font-bold text-gray-700 mb-4 ">Schedule</h3>
 
       <div className="overflow-x-auto border rounded-lg shadow-md">
         <table className="min-w-full divide-y divide-gray-200">

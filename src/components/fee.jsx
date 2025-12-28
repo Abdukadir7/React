@@ -23,7 +23,7 @@ const Fee = () => {
   const dueFee = totalFee - paidFee;
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 rounded-lg ">
       <h1 className="text-2xl font-bold mb-4 text-gray-700">Student Fee</h1>
 
       {/* Fee Summary */}

@@ -9,7 +9,7 @@ import { UserCog, User, Users, Info, Mail } from "lucide-react";
 const Dashboard = () => {
   // Simulated logged-in user
   const user = {
-    role: "admin", // change to student | parent
+    role: "student", // change to student | parent
   };
 
   // Default page based on role
@@ -102,7 +102,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 bg-gray-100 p-10 min-h-screen">
+      <div className="flex-1 ml-64 p-10 ">
         {renderPage()}
         {page === "about" && <About />}
         {page === "contact" && <ContactPage />}
