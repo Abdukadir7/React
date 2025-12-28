@@ -3,11 +3,30 @@ import Admin from "../pages/admin";
 import Student from "../pages/students";
 import Parent from "../pages/Parent";
 import About from "../pages/About";
-import ContactPage from "../pages/Contact"; // Replace with a proper Contact component
+import ContactPage from "../pages/Contact";
 import { UserCog, User, Users, Info, Mail } from "lucide-react";
 
 const Dashboard = () => {
-  const [page, setPage] = useState("admin");
+  // Simulated logged-in user
+  const user = {
+    role: "admin", // change to student | parent
+  };
+
+  // Default page based on role
+  const [page, setPage] = useState(user.role);
+
+  const renderPage = () => {
+    switch (user.role) {
+      case "admin":
+        return page === "admin" && <Admin />;
+      case "student":
+        return page === "student" && <Student />;
+      case "parent":
+        return page === "parent" && <Parent />;
+      default:
+        return <h1>Unauthorized</h1>;
+    }
+  };
 
   return (
     <div className="flex font-sans">
@@ -17,42 +36,48 @@ const Dashboard = () => {
           School<span className="text-white text-2xl">.</span>
         </div>
 
-        <div className="sidebar-links p-5">
+        <div className="p-5">
           <ul className="text-white space-y-4">
-            {/* Admin */}
-            <li
-              className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                page === "admin" ? "bg-blue-700" : "hover:bg-blue-400"
-              }`}
-              onClick={() => setPage("admin")}
-            >
-              <UserCog size={20} />
-              Admin
-            </li>
+            {/* ADMIN */}
+            {user.role === "admin" && (
+              <li
+                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                  page === "admin" ? "bg-blue-700" : "hover:bg-blue-400"
+                }`}
+                onClick={() => setPage("admin")}
+              >
+                <UserCog size={20} />
+                Dashboard
+              </li>
+            )}
 
-            {/* Student */}
-            <li
-              className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                page === "student" ? "bg-blue-700" : "hover:bg-blue-400"
-              }`}
-              onClick={() => setPage("student")}
-            >
-              <User size={20} />
-              Student
-            </li>
+            {/* STUDENT */}
+            {user.role === "student" && (
+              <li
+                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                  page === "student" ? "bg-blue-700" : "hover:bg-blue-400"
+                }`}
+                onClick={() => setPage("student")}
+              >
+                <User size={20} />
+                Dashboard
+              </li>
+            )}
 
-            {/* Parent */}
-            <li
-              className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
-                page === "parent" ? "bg-blue-700" : "hover:bg-blue-400"
-              }`}
-              onClick={() => setPage("parent")}
-            >
-              <Users size={20} />
-              Parent
-            </li>
+            {/* PARENT */}
+            {user.role === "parent" && (
+              <li
+                className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
+                  page === "parent" ? "bg-blue-700" : "hover:bg-blue-400"
+                }`}
+                onClick={() => setPage("parent")}
+              >
+                <Users size={20} />
+                Dashboard
+              </li>
+            )}
 
-            {/* About */}
+            {/* COMMON LINKS */}
             <li
               className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
                 page === "about" ? "bg-blue-700" : "hover:bg-blue-400"
@@ -63,7 +88,6 @@ const Dashboard = () => {
               About
             </li>
 
-            {/* Contact */}
             <li
               className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
                 page === "contact" ? "bg-blue-700" : "hover:bg-blue-400"
@@ -79,9 +103,7 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div className="flex-1 ml-64 bg-gray-100 p-10 min-h-screen">
-        {page === "admin" && <Admin />}
-        {page === "student" && <Student />}
-        {page === "parent" && <Parent />}
+        {renderPage()}
         {page === "about" && <About />}
         {page === "contact" && <ContactPage />}
       </div>
