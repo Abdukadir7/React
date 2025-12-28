@@ -12,7 +12,7 @@ const AllStudents = () => {
             <th className="p-3 border">#</th>
             <th className="p-3 border">First Name</th>
             <th className="p-3 border">Last Name</th>
-            <th className="p-3 border"></th>
+            <th className="p-3 border">Gender</th>
           </tr>
         </thead>
 
